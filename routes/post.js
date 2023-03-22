@@ -5,24 +5,6 @@ const User=require('../api/models/registerSchema');
 
 const db=mongoose.connection;
 
-router.post('/abc',async(req,res)=>
-{
-  const routes=new User({
-    //data coming from req obj
-    playerName:req.body.playerName,
-    email:req.body.email,
-    password:req.body.password,
-    confirmPassword:req.body.confirmPassword
-  });
-  try{
-    const r1=await routes.save();
-    res.json(r1);
-  }
-  catch(err){
-    res.send('Error'+err);
-  }
-})
-
 router.post('/register',async (req,res)=>{
   console.log("pst metod called")
   try{
@@ -55,14 +37,9 @@ if(password===confirmPassword){
   });
   console.log(data);
 //middleware
-
-
-
-
   const registered=await data.save();
   console.log("Record inserted successfully");
   //res.status(201).render("index");
-
   // db.collection('users').insertOne(data,(err,collection)=>{
   //   if(err){
   //     throw err;
@@ -81,6 +58,5 @@ catch(err){
 }
 
 })
-
 
 module.exports=router;
